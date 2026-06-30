@@ -5,22 +5,22 @@ from projector import SchemaProjector
 def test_projection_config_renaming_and_nested_paths():
     projector = SchemaProjector()
     candidate = CanonicalCandidate(
-        name=FieldValue(
+        full_name=FieldValue(
             value="John Doe", 
             confidence=0.8, 
-            provenance=[Provenance(field="name", source="resume", extraction_method="pdf_structure")]
+            provenance=[Provenance(field="full_name", source="resume", extraction_method="pdf_structure")]
         ),
-        email=FieldValue(
+        emails=[FieldValue(
             value="john@example.com", 
             confidence=0.6, 
-            provenance=[Provenance(field="email", source="resume", extraction_method="regex")]
-        )
+            provenance=[Provenance(field="emails", source="resume", extraction_method="regex")]
+        )]
     )
     
     config = {
         "fields": {
-            "name": {"rename": "personal_info.full_name", "path": "name"},
-            "email": {"rename": "email_address", "path": "email"}
+            "full_name": {"rename": "personal_info.full_name", "path": "full_name"},
+            "emails": {"rename": "email_address", "path": "emails"}
         },
         "include_confidence": False,
         "include_provenance": False
@@ -31,49 +31,49 @@ def test_projection_config_renaming_and_nested_paths():
     # Nested field checking
     assert "personal_info" in output
     assert output["personal_info"]["full_name"] == "John Doe"
-    assert output["email_address"] == "john@example.com"
+    assert output["email_address"] == ["john@example.com"]
     # Metadata properties omitted
     assert "overall_confidence" not in output
 
 def test_projection_missing_field_policy():
     projector = SchemaProjector()
     candidate = CanonicalCandidate(
-        name=FieldValue(value="John Doe", confidence=0.8, provenance=[])
+        full_name=FieldValue(value="John Doe", confidence=0.8, provenance=[])
     )
     
     # 1. Null policy
     config_null = {
         "fields": {
-            "name": {"rename": "name", "path": "name"},
-            "email": {"rename": "email", "path": "email"}
+            "full_name": {"rename": "full_name", "path": "full_name"},
+            "emails": {"rename": "emails", "path": "emails"}
         },
         "include_confidence": False,
         "include_provenance": False,
         "missing_field_policy": "null"
     }
     output_null = projector.project(candidate, config_null)
-    assert output_null["name"] == "John Doe"
-    assert output_null["email"] is None
+    assert output_null["full_name"] == "John Doe"
+    assert output_null["emails"] is None
     
     # 2. Omit policy
     config_omit = {
         "fields": {
-            "name": {"rename": "name", "path": "name"},
-            "email": {"rename": "email", "path": "email"}
+            "full_name": {"rename": "full_name", "path": "full_name"},
+            "emails": {"rename": "emails", "path": "emails"}
         },
         "include_confidence": False,
         "include_provenance": False,
         "missing_field_policy": "omit"
     }
     output_omit = projector.project(candidate, config_omit)
-    assert output_omit["name"] == "John Doe"
-    assert "email" not in output_omit
+    assert output_omit["full_name"] == "John Doe"
+    assert "emails" not in output_omit
     
     # 3. Error policy
     config_error = {
         "fields": {
-            "name": {"rename": "name", "path": "name"},
-            "email": {"rename": "email", "path": "email"}
+            "full_name": {"rename": "full_name", "path": "full_name"},
+            "emails": {"rename": "emails", "path": "emails"}
         },
         "missing_field_policy": "error"
     }

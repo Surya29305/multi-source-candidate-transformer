@@ -6,7 +6,7 @@ def test_phone_normalization():
     assert normalize_phone("555-555-5555") == "+15555555555"  # defaults to US
     assert normalize_phone("+91 99999 99999") == "+919999999999"
     # Unparseable numbers fall back to clean alphanumerics
-    assert normalize_phone("invalid-phone") == "invalid-phone"
+    assert normalize_phone("invalid-phone") is None
 
 def test_date_normalization():
     # YYYY-MM date normalization tests

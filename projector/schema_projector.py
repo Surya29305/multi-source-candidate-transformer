@@ -1,3 +1,4 @@
+import datetime
 from typing import Dict, Any, Optional, List
 from models import CanonicalCandidate, FieldValue
 
@@ -10,60 +11,76 @@ class SchemaProjector:
         fields_config = config.get("fields", {})
         include_confidence = config.get("include_confidence", True)
         include_provenance = config.get("include_provenance", True)
+        include_metadata = config.get("include_metadata", True)
         missing_policy = config.get("missing_field_policy", "null")
         
         output = {}
         
         for canonical_path, field_cfg in fields_config.items():
-            # Get rename and path mappings
             rename_to = field_cfg.get("rename", canonical_path)
             source_path = field_cfg.get("path", canonical_path)
             
-            # Fetch the field value from canonical model
             field_val = getattr(candidate, source_path, None)
             
             if field_val is None or (isinstance(field_val, list) and not field_val):
-                # Handle missing/empty fields
                 if missing_policy == "error":
                     raise ValueError(f"Required field '{source_path}' is missing on the candidate.")
                 elif missing_policy == "omit":
                     continue
-                else: # "null" policy
+                else:
                     self._set_nested_value(output, rename_to, None)
             else:
-                # Format the field value according to metadata configuration
                 formatted_val = self._format_field(field_val, include_confidence, include_provenance)
                 self._set_nested_value(output, rename_to, formatted_val)
                 
-        # Append overall confidence if confidence metadata is enabled
         if include_confidence:
             output["overall_confidence"] = candidate.calculate_overall_confidence()
+            
+        if include_metadata:
+            # Dynamically collect actual raw sources processed from candidate provenance
+            sources_found = set()
+            model_fields = getattr(type(candidate), "model_fields", None)
+            fields_to_iter = list(model_fields.keys()) if model_fields else list(candidate.__fields__)
+            for k in fields_to_iter:
+                field_val = getattr(candidate, k, None)
+                if not field_val:
+                    continue
+                if isinstance(field_val, list):
+                    for item in field_val:
+                        if hasattr(item, "provenance"):
+                            for prov in item.provenance:
+                                sources_found.add(prov.source.lower())
+                elif hasattr(field_val, "provenance"):
+                    for prov in field_val.provenance:
+                        sources_found.add(prov.source.lower())
+            
+            allowed_sources = {"ats", "csv", "resume", "linkedin"}
+            sources_processed = sorted(list(sources_found.intersection(allowed_sources)))
+            
+            output["metadata"] = {
+                "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat().replace("+00:00", "Z"),
+                "pipeline_version": "1.2.0",
+                "merge_strategy": "deterministic_priority_with_confidence_fallback",
+                "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+                "sources_processed": sources_processed
+            }
             
         return output
         
     def _format_field(self, field_val: Any, include_conf: bool, include_prov: bool) -> Any:
-        """
-        Formats a FieldValue wrapper (or List of FieldValues) into raw values 
-        or annotated metadata dictionaries.
-        """
         if isinstance(field_val, list):
-            # List fields (skills, education, experience)
             return [self._format_single_value(item, include_conf, include_prov) for item in field_val]
         else:
-            # Single fields
             return self._format_single_value(field_val, include_conf, include_prov)
             
     def _format_single_value(self, item: FieldValue, include_conf: bool, include_prov: bool) -> Any:
-        # Determine if value is a Pydantic model itself (like EducationCanonical or ExperienceCanonical)
         val = item.value
         if hasattr(val, "dict"):
             val = val.dict()
             
-        # If neither confidence nor provenance are requested, return clean raw value
         if not include_conf and not include_prov:
             return val
             
-        # Build annotated dictionary representation
         result = {"value": val}
         if include_conf:
             result["confidence"] = item.confidence
@@ -73,9 +90,6 @@ class SchemaProjector:
         return result
         
     def _set_nested_value(self, d: dict, path: str, val: Any) -> None:
-        """
-        Sets a value in a nested dictionary using dot notation (e.g. "info.name")
-        """
         parts = path.split(".")
         current = d
         for part in parts[:-1]:

@@ -55,32 +55,12 @@
           "extraction_method": "ats_json"
         }
       ]
-    },
-    {
-      "value": "+15555555555",
-      "confidence": 0.6,
-      "provenance": [
-        {
-          "field": "phones",
-          "source": "resume",
-          "extraction_method": "regex"
-        }
-      ]
-    },
-    {
-      "value": "+20182022",
-      "confidence": 0.6,
-      "provenance": [
-        {
-          "field": "phones",
-          "source": "resume",
-          "extraction_method": "regex"
-        }
-      ]
     }
   ],
   "location": {
     "value": {
+      "city": null,
+      "region": null,
       "country": "US"
     },
     "confidence": 0.9,
@@ -92,7 +72,22 @@
       }
     ]
   },
-  "links": null,
+  "links": {
+    "value": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    },
+    "confidence": 0.8,
+    "provenance": [
+      {
+        "field": "links",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      }
+    ]
+  },
   "headline": null,
   "years_experience": {
     "value": 3.9,
@@ -215,14 +210,47 @@
       ]
     }
   ],
-  "overall_confidence": 0.94,
+  "overall_confidence": 0.95,
   "metadata": {
-    "generated_at": "2026-06-30T15:25:07.206989Z",
+    "generated_at": "2026-06-30T16:01:05.858396Z",
     "pipeline_version": "1.1.0",
     "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, Resume=0.8. Overlap=1.0. Conflicts reduce highest confidence by 0.1 penalty.",
     "sources_processed": [
       "resume",
       "ats"
-    ]
+    ],
+    "validation_report": {
+      "candidate_id": {
+        "status": "passed"
+      },
+      "full_name": {
+        "status": "passed"
+      },
+      "emails": {
+        "status": "passed"
+      },
+      "phones": {
+        "status": "passed"
+      },
+      "location": {
+        "status": "passed"
+      },
+      "links": {
+        "status": "passed"
+      },
+      "years_experience": {
+        "status": "passed"
+      },
+      "skills": {
+        "status": "passed"
+      },
+      "experience": {
+        "status": "passed"
+      },
+      "education": {
+        "status": "passed"
+      }
+    }
   }
 }

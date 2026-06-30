@@ -1,41 +1,52 @@
 {
   "fields": {
     "candidate_id": {
+      "rename": "metadata.id",
       "path": "candidate_id"
     },
     "full_name": {
+      "rename": "personal.name_details.full",
       "path": "full_name"
     },
     "emails": {
+      "rename": "contact.email_addresses",
       "path": "emails"
     },
     "phones": {
+      "rename": "contact.phone_numbers",
       "path": "phones"
     },
     "location": {
+      "rename": "personal.residence",
       "path": "location"
     },
     "links": {
+      "rename": "contact.socials",
       "path": "links"
     },
     "headline": {
+      "rename": "professional_details.headline",
       "path": "headline"
     },
     "years_experience": {
+      "rename": "professional_details.years_experience",
       "path": "years_experience"
     },
     "skills": {
+      "rename": "professional_details.competencies",
       "path": "skills"
     },
     "experience": {
+      "rename": "professional_details.work_history",
       "path": "experience"
     },
     "education": {
+      "rename": "academic_details.history",
       "path": "education"
     }
   },
-  "include_confidence": true,
-  "include_provenance": true,
+  "include_confidence": false,
+  "include_provenance": false,
   "include_metadata": true,
-  "missing_field_policy": "null"
+  "missing_field_policy": "omit"
 }

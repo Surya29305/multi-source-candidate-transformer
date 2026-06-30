@@ -6,6 +6,7 @@ CANONICAL_SKILLS = {
     "machine learning": "Machine Learning",
     "js": "JavaScript",
     "javascript": "JavaScript",
+    "java script": "JavaScript",
     "reactjs": "React",
     "react js": "React",
     "react": "React",

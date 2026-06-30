@@ -16,39 +16,45 @@ class ExperienceCanonical(BaseModel):
     end_date: Optional[str] = None
     location: Optional[str] = None
 
+class LocationCanonical(BaseModel):
+    city: Optional[str] = None
+    region: Optional[str] = None
+    country: Optional[str] = None
+
+class LinksCanonical(BaseModel):
+    linkedin: Optional[str] = None
+    github: Optional[str] = None
+    portfolio: Optional[str] = None
+    other: List[str] = Field(default_factory=list)
+
 class CanonicalCandidate(BaseModel):
-    name: Optional[FieldValue[str]] = None
-    email: Optional[FieldValue[str]] = None
-    phone: Optional[FieldValue[str]] = None
+    candidate_id: Optional[FieldValue[str]] = None
+    full_name: Optional[FieldValue[str]] = None
+    emails: List[FieldValue[str]] = Field(default_factory=list)
+    phones: List[FieldValue[str]] = Field(default_factory=list)
+    location: Optional[FieldValue[LocationCanonical]] = None
+    links: Optional[FieldValue[LinksCanonical]] = None
+    headline: Optional[FieldValue[str]] = None
+    years_experience: Optional[FieldValue[float]] = None
     skills: List[FieldValue[str]] = Field(default_factory=list)
-    education: List[FieldValue[EducationCanonical]] = Field(default_factory=list)
     experience: List[FieldValue[ExperienceCanonical]] = Field(default_factory=list)
-    country: Optional[FieldValue[str]] = None
+    education: List[FieldValue[EducationCanonical]] = Field(default_factory=list)
 
     def calculate_overall_confidence(self) -> float:
         """
         Calculate overall confidence score as the average of the confidences of all present fields.
-        For list fields (skills, education, experience), we compute the average of their 
-        elements' confidences if any items are present.
         """
         confidences = []
         
-        for field_name in ["name", "email", "phone", "country"]:
+        for field_name in ["candidate_id", "full_name", "location", "links", "headline", "years_experience"]:
             field_val = getattr(self, field_name)
             if field_val is not None:
                 confidences.append(field_val.confidence)
                 
-        if self.skills:
-            skills_conf = sum(s.confidence for s in self.skills) / len(self.skills)
-            confidences.append(skills_conf)
-            
-        if self.education:
-            edu_conf = sum(e.confidence for e in self.education) / len(self.education)
-            confidences.append(edu_conf)
-            
-        if self.experience:
-            exp_conf = sum(e.confidence for e in self.experience) / len(self.experience)
-            confidences.append(exp_conf)
+        for list_field in [self.emails, self.phones, self.skills, self.experience, self.education]:
+            if list_field:
+                avg_conf = sum(i.confidence for i in list_field) / len(list_field)
+                confidences.append(avg_conf)
             
         if not confidences:
             return 0.0

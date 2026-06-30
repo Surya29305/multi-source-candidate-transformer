@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "generated_at": "2026-06-30T16:03:09.024227Z",
+    "pipeline_version": "1.1.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, Resume=0.8. Overlap=1.0. Conflicts reduce highest confidence by 0.1 penalty.",
+    "sources_processed": [
+      "resume",
+      "ats"
+    ],
+    "validation_report": {
+      "full_name": {
+        "status": "passed"
+      },
+      "emails": {
+        "status": "passed"
+      },
+      "phones": {
+        "status": "passed"
+      },
+      "location": {
+        "status": "passed"
+      },
+      "links": {
+        "status": "passed"
+      },
+      "years_experience": {
+        "status": "passed"
+      },
+      "skills": {
+        "status": "passed"
+      },
+      "experience": {
+        "status": "passed"
+      },
+      "education": {
+        "status": "passed"
+      }
+    }
+  },
+  "personal": {
+    "name_details": {
+      "full": "Jane Doe"
+    },
+    "residence": {
+      "city": null,
+      "region": null,
+      "country": "US"
+    }
+  },
+  "contact": {
+    "email_addresses": [
+      "jane.doe@example.com"
+    ],
+    "phone_numbers": [
+      "+15550199988"
+    ],
+    "socials": {
+      "linkedin": null,
+      "github": null,
+      "portfolio": null,
+      "other": []
+    }
+  },
+  "professional_details": {
+    "years_experience": 3.9,
+    "competencies": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "React",
+      "Machine Learning"
+    ],
+    "work_history": [
+      {
+        "company": "Google",
+        "role": "Software Engineer",
+        "start_date": "2022-07",
+        "end_date": "Present",
+        "location": "Mountain View, CA"
+      }
+    ]
+  },
+  "academic_details": {
+    "history": [
+      {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "start_date": "2018-09",
+        "end_date": "2022-06"
+      }
+    ]
+  }
+}

@@ -1,33 +1,117 @@
 # Multi-Source Candidate Data Transformer
 
-A production-quality Python pipeline to ingest candidate profiles from multiple heterogeneous sources (structured ATS JSON and unstructured Resume PDF), normalize the data, merge conflicts using deterministic confidence scores, track field-level provenance, validate the output schema, and format custom configurations on the fly.
+A production-quality Python pipeline to ingest candidate profiles from multiple heterogeneous sources (structured ATS JSON, structured Recruiter CSV, unstructured Resume PDF, and unstructured LinkedIn Profile text), normalize the data, merge conflicts using deterministic confidence scores, track field-level provenance, validate the output schema, and format custom configurations on the fly.
 
 ---
 
-## Architecture Overview
+## 🚀 Quick Start (5-Minute Run Guide)
 
-```
-[Resume PDF] ──► [PdfParser] ──┐
-                               ├──► [RawCandidate] ──► [ProfileMerger] ──► [CanonicalCandidate]
-[ATS JSON]   ──► [JsonParser]  ──┘          ▲                  │
-                                            │                  ▼
-                                     [Normalizers]      [SchemaProjector]
-                                                               │
-                                                               ▼
-[output/candidate.json] ◄── [OutputValidator] ◄────────────────┘
+### 1. Clone Repository & Navigate
+```bash
+git clone <repository_url>
+cd Eightfold_assessment
 ```
 
-1. **Ingestion**: Raw files are ingested by format-specific parsers. Unstructured PDF resumes are parsed heuristically using `pdfplumber` and regular expressions. ATS JSON structures are mapped directly.
-2. **Normalization**: Individual field elements (phone numbers, dates, skills, country codes) are normalized to their canonical forms (E.164, YYYY-MM, canonical skill names, ISO-3166 Alpha-2).
-3. **Merging**: Standardized records are merged field-by-field. Conflicting entries resolve using confidence scoring. Elements present in multiple sources receive confidence boosts (to `1.0`), and their source histories are tracked.
-4. **Projection**: Translates the internal canonical representation into client-specified JSON formats (handling nested path remappings, field selection, and metadata toggles) using runtime configs.
-5. **Validation**: Validates the output through micro-Pydantic schemas. Validation failures are captured, logging warnings and falling back to `null` to ensure crash-free execution.
+### 2. Install Dependencies
+```bash
+pip install pdfplumber pydantic phonenumbers pytest
+```
+
+### 3. Run the Complete Pipeline (All 4 Sources + Default Config)
+```bash
+python main.py \
+  --ats input/ats.json \
+  --csv input/recruiter.csv \
+  --resume input/resume.pdf \
+  --linkedin input/linkedin.txt \
+  --config config/default.json \
+  --output output/all_four.json
+```
+
+### 4. Run with a Single Source (e.g. Recruiter CSV Only)
+```bash
+python main.py --csv input/recruiter.csv --output output/only_csv.json
+```
+
+### 5. Run with Custom Nested Schema Projection
+```bash
+python main.py \
+  --ats input/ats.json \
+  --csv input/recruiter.csv \
+  --resume input/resume.pdf \
+  --linkedin input/linkedin.txt \
+  --config config/custom.json \
+  --output output/all_four_custom.json
+```
+
+### 6. Run Test Suite
+```bash
+python -m pytest tests/
+```
+
+### 7. Interactive Setup Wizard Mode
+Alternatively, configure and run the entire pipeline step-by-step:
+```bash
+python main.py -i
+```
 
 ---
 
-## Installation & Dependencies
+## 1. Project Features
 
-Ensure you have Python 3.10+ installed.
+- **Multi-Source Ingestion**: Ingest data from ATS JSON, Recruiter CSV, Resume PDF, and LinkedIn TXT files.
+- **Robust Schema Normalization**: Standardizes emails, phones (E.164), country codes (ISO-3166-1 alpha-2), links, skills, and timelines.
+- **Deterministic Merger**: Combines profiles based on deterministic priority orders (`ATS > CSV > Resume > LinkedIn`) with explicit base confidence scores and conflict penalties.
+- **Confidence Tracking**: Calculates overall profile confidences using deterministic strategies.
+- **Dynamic Configurable Projection**: Custom configurations allow remapping schemas dynamically (nested path routing, field filtering, dropping confidence/provenance fields) without rewriting backend code.
+- **Safety Validation**: Micro-Pydantic models evaluate generated output fields and construct validation reports detailing field-level status messages.
+- **Wizard Interactive CLI**: Friendly step-by-step setup mode.
+
+---
+
+## 2. Directory Structure
+
+```text
+Eightfold_assessment/
+├── config/
+│   ├── default.json            # Flat schema projection mapping with confidence & provenance
+│   └── custom.json             # Nested schema projection mapping omitting metadata fields
+├── input/
+│   ├── ats.json                # Sample ATS source file
+│   ├── recruiter.csv           # Sample Recruiter CSV source file
+│   ├── resume.pdf              # Sample Resume PDF source file
+│   └── linkedin.txt            # Sample LinkedIn text export file
+├── merger/
+│   └── profile_merger.py       # Core deduplication, priority resolution, and merging logic
+├── models/
+│   ├── raw.py                  # Pydantic schemas representing unmerged source inputs
+│   └── canonical.py            # Pydantic schemas representing the unified candidate model
+├── normalizers/
+│   ├── country.py              # ISO-3166-1 alpha-2 mapping utilities
+│   ├── date.py                 # Time and date segment formatting logic
+│   ├── phone.py                # Phone E.164 normalizers
+│   ├── skill.py                # Technical skill normalizers
+│   └── links.py                # URL normalizers
+├── parsers/
+│   ├── base.py                 # Abstract Base Parser class
+│   ├── json_parser.py          # ATS JSON parser
+│   ├── csv_parser.py           # Recruiter CSV parser
+│   ├── pdf_parser.py           # PDF resume parser
+│   └── linkedin_parser.py      # LinkedIn txt parser (inherits from PdfParser)
+├── projector/
+│   └── schema_projector.py     # Runtime custom schema layout projector
+├── validator/
+│   └── output_validator.py     # Micro-validators & validation reporting
+├── output/                     # Location where output files are generated
+├── tests/                      # Pytest test suites
+└── main.py                     # CLI Entrypoint & Setup Wizard
+```
+
+---
+
+## 3. Installation & Dependencies
+
+Make sure you have Python 3.10+ installed.
 
 1. Clone or copy the project folder.
 2. Install the required dependencies:
@@ -37,217 +121,77 @@ Ensure you have Python 3.10+ installed.
 
 ---
 
-## How to Run
+## 4. How to Run (Usability Guide)
 
-Run the pipeline using the command line interface:
+The transformer can be run in two ways: **Interactive Setup Wizard** or **CLI Command Mode**.
 
+### Option A: Interactive Setup Wizard (Highly Recommended for First-Time Users)
+Launch the wizard to be guided step-by-step through configuring your inputs, projection configurations, and output destination:
+```bash
+python main.py -i
+```
+*Tip: Simply press ENTER during input questions to skip sources you don't wish to supply.*
+
+### Option B: CLI Command Mode (For Automation & Scripting)
+Supply all inputs directly via flags. Output paths are fully configurable via the `--output` flag.
+
+**Example 1: Merge All Four Sources (ATS + CSV + Resume + LinkedIn)**
 ```bash
 python main.py \
-    --resume input/resume.pdf \
-    --ats input/ats.json \
-    --config config/default.json \
-    --output output/candidate.json
+  --ats input/ats.json \
+  --csv input/recruiter.csv \
+  --resume input/resume.pdf \
+  --linkedin input/linkedin.txt \
+  --config config/default.json \
+  --output output/all_four.json
+```
+
+**Example 2: Merge Only Two Sources (CSV + Resume)**
+```bash
+python main.py \
+  --csv input/recruiter.csv \
+  --resume input/resume.pdf \
+  --config config/default.json \
+  --output output/partial_sources.json
+```
+
+**Example 3: Generate Custom Nested Projection Output**
+```bash
+python main.py \
+  --ats input/ats.json \
+  --csv input/recruiter.csv \
+  --resume input/resume.pdf \
+  --linkedin input/linkedin.txt \
+  --config config/custom.json \
+  --output output/all_four_custom.json
 ```
 
 ---
 
-## Configuration Schema
+## 5. Ingestion & Merging Strategy
 
-The pipeline is configured using a runtime JSON file (e.g. `config/default.json`).
+### Confidence Scoring System
+Confidence starts with the reliability of the source format:
+- **ATS**: `0.90` (Structured, verified system of record)
+- **Recruiter CSV**: `0.85` (Structured, recruiter upload)
+- **Resume (Direct)**: `0.80` / **Resume (Heuristic)**: `0.60` (Unstructured text)
+- **LinkedIn (Direct)**: `0.80` / **LinkedIn (Heuristic)**: `0.60` (Unstructured text)
 
-### Options:
-- **`fields`**: Configures selection, paths, and renaming.
-  - `path`: The source field in the canonical candidate profile (`name`, `email`, `phone`, `skills`, `education`, `experience`, `country`).
-  - `rename`: Target key. Supports nested path mapping using dot notation (e.g. `"personal_info.full_name"`).
-- **`include_confidence`**: `true`/`false`. Toggles inclusion of confidence values.
-- **`include_provenance`**: `true`/`false`. Toggles inclusion of source provenance records.
-- **`missing_field_policy`**: Behavior when a configured field is missing:
-  - `"null"`: Output key with value `null`.
-  - `"omit"`: Exclude the key from the output entirely.
-  - `"error"`: Raise an exception.
+- **Conflicting Overlaps**: Resolved deterministically by prioritizing inputs: `ATS > CSV > Resume > LinkedIn`. The selected value gets a conflict penalty of `-0.1` on its highest confidence score.
+- **Identical Overlaps**: If a field matches identically across multiple sources, its confidence is boosted to `1.0` and all sources are tracked in its provenance.
 
 ---
 
-## Examples
+## 6. Output Configurator (Default vs Custom Projection)
 
-### Input Examples
-
-#### ATS JSON (`input/ats.json`)
-```json
-{
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "email": "jane.doe@example.com",
-  "phone": "+1 (555) 019-9988",
-  "country": "United States",
-  "skills": ["Python", "JS"],
-  "education_history": [
-    {
-      "school": "Stanford University",
-      "degree_name": "B.S.",
-      "major": "Computer Science",
-      "start": "2018-09",
-      "end": "2022-06"
-    }
-  ]
-}
-```
-
-#### Resume PDF (`input/resume.pdf`)
-A PDF resume containing:
-- Name: Jane Doe
-- Email: jane.doe@example.com
-- Phone: +1 555 019 9988
-- Skills: Python, ReactJS
-- Education: Stanford University, CS, B.S., 2018 - 2022
-
-### Output Example (`output/candidate.json`)
-Using default config:
-```json
-{
-  "full_name": {
-    "value": "Jane Doe",
-    "confidence": 1.0,
-    "provenance": [
-      {
-        "field": "name",
-        "source": "resume",
-        "extraction_method": "pdf_structure"
-      },
-      {
-        "field": "name",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      }
-    ]
-  },
-  "email_address": {
-    "value": "jane.doe@example.com",
-    "confidence": 1.0,
-    "provenance": [
-      {
-        "field": "email",
-        "source": "resume",
-        "extraction_method": "regex"
-      },
-      {
-        "field": "email",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      }
-    ]
-  },
-  "phone_number": {
-    "value": "+15550199988",
-    "confidence": 1.0,
-    "provenance": [
-      {
-        "field": "phone",
-        "source": "resume",
-        "extraction_method": "regex"
-      },
-      {
-        "field": "phone",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      }
-    ]
-  },
-  "skills": [
-    {
-      "value": "Python",
-      "confidence": 1.0,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "resume",
-          "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "skills",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        }
-      ]
-    },
-    {
-      "value": "JavaScript",
-      "confidence": 0.9,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        }
-      ]
-    },
-    {
-      "value": "React",
-      "confidence": 0.8,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "resume",
-          "extraction_method": "pdf_structure"
-        }
-      ]
-    }
-  ],
-  "education_history": [
-    {
-      "value": {
-        "institution": "Stanford University",
-        "degree": "B.S.",
-        "field_of_study": "Computer Science",
-        "start_date": "2018-09",
-        "end_date": "2022-06"
-      },
-      "confidence": 1.0,
-      "provenance": [
-        {
-          "field": "education",
-          "source": "resume",
-          "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "education",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        }
-      ]
-    }
-  ],
-  "work_history": null,
-  "country_code": {
-    "value": "US",
-    "confidence": 1.0,
-    "provenance": [
-      {
-        "field": "country",
-        "source": "resume",
-        "extraction_method": "pdf_structure"
-      },
-      {
-        "field": "country",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      }
-    ]
-  },
-  "overall_confidence": 1.0
-}
-```
+By changing the configuration path in `--config`, you alter the final schema output structure dynamically:
+- **`config/default.json`**: Projects flat structures retaining the full provenance and confidence metrics per field.
+- **`config/custom.json`**: Remaps fields into nested groups (e.g. `personal.residence`, `contact.socials`), omits confidence and provenance values to compress payload size, and ignores missing values (`omit` policy).
 
 ---
 
-## Assumptions
-1. **Source Reliability**: ATS inputs are considered explicitly structured and verified, hence they start with a higher baseline confidence (`0.9`). PDF parsing relies on regex and positional heuristic cues, starting at `0.8` (structure) and `0.6` (heuristic fields like phone/email).
-2. **Matching Criteria**: Education records match if the institution name overlaps and degree names start with the same letter. Experience records match if normalized company names (without suffixes like "Inc.", "Corp.") match.
-3. **Date Resolution**: Hand-written date segments are parsed to YYYY-MM. If only a year is available, it defaults to YYYY-01. "Present" / "Current" are preserved for ongoing engagements.
+## 7. Troubleshooting
 
----
-
-## Future Improvements
-- **Semantic Entity Matching**: Replace token/regex matching for company names and education with vector embeddings or custom string distance weights (e.g. Jaro-Winkler).
-- **Expanded PDF Layout Support**: Support multi-column PDFs by analyzing bounding boxes (PDF coordinates) instead of raw text line splits.
-- **Dynamic Normalizer Mappings**: Move normalization catalogs (such as canonical skills or country maps) into external files or database lookups rather than inline maps.
+- **Missing Input Files Error**: The CLI expects at least one source file. Ensure the file paths are correctly spelled or run `python main.py -i` to verify paths.
+- **Dependency Import Error**: Run `pip install pdfplumber pydantic phonenumbers pytest` to make sure all modules are available in your python environment.
+- **PDF Parser Warning**: Some multi-column PDFs may not read in exact layout order. We handle this by splitting sections dynamically based on header boundaries.

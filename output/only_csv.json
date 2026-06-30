@@ -1,0 +1,163 @@
+{
+  "candidate_id": {
+    "value": "be999d1e91f6e1952cee6fe32c8c4d37a36a3bf7d4a7f94b2c68eb6dc7feba46",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "candidate_id",
+        "source": "system",
+        "extraction_method": "deterministic_hash"
+      }
+    ]
+  },
+  "full_name": {
+    "value": "Jane Doe",
+    "confidence": 0.85,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "csv",
+        "extraction_method": "csv_structure"
+      }
+    ]
+  },
+  "emails": [
+    {
+      "value": "jane.doe@example.com",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "emails",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "value": "+15550199988",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "phones",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "location": {
+    "value": {
+      "city": "Mountain View",
+      "region": "CA",
+      "country": null
+    },
+    "confidence": 0.85,
+    "provenance": [
+      {
+        "field": "location",
+        "source": "csv",
+        "extraction_method": "csv_structure"
+      }
+    ]
+  },
+  "links": null,
+  "headline": null,
+  "years_experience": null,
+  "skills": [
+    {
+      "value": "Python",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    },
+    {
+      "value": "JavaScript",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    },
+    {
+      "value": "SQL",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "value": {
+        "company": "Google",
+        "role": "Software Engineer",
+        "start_date": "Present",
+        "end_date": "Present",
+        "location": null
+      },
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "education": null,
+  "overall_confidence": 0.87,
+  "metadata": {
+    "generated_at": "2026-06-30T18:04:49.967815Z",
+    "pipeline_version": "1.2.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+    "sources_processed": [
+      "csv"
+    ],
+    "validation_report": {
+      "candidate_id": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "full_name": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "emails": {
+        "status": "passed",
+        "message": "Valid email format"
+      },
+      "phones": {
+        "status": "passed",
+        "message": "Valid E.164 phone number"
+      },
+      "location": {
+        "status": "passed",
+        "message": "Location normalized successfully"
+      },
+      "skills": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "experience": {
+        "status": "passed",
+        "message": "Required field present"
+      }
+    }
+  }
+}

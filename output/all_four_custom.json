@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "generated_at": "2026-06-30T18:04:59.883456Z",
+    "pipeline_version": "1.2.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+    "sources_processed": [
+      "ats",
+      "csv",
+      "linkedin",
+      "resume"
+    ],
+    "validation_report": {
+      "full_name": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "emails": {
+        "status": "passed",
+        "message": "Valid email format"
+      },
+      "phones": {
+        "status": "passed",
+        "message": "Valid E.164 phone number"
+      },
+      "location": {
+        "status": "passed",
+        "message": "Location normalized successfully"
+      },
+      "links": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "headline": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "years_experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "skills": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "education": {
+        "status": "passed",
+        "message": "Required field present"
+      }
+    }
+  },
+  "personal": {
+    "name_details": {
+      "full": "Jane Doe"
+    },
+    "residence": {
+      "city": "Mountain View",
+      "region": "CA",
+      "country": "US"
+    }
+  },
+  "contact": {
+    "email_addresses": [
+      "jane.doe@example.com"
+    ],
+    "phone_numbers": [
+      "+15550199988"
+    ],
+    "socials": {
+      "linkedin": "https://linkedin.com/in/janedoe",
+      "github": null,
+      "portfolio": null,
+      "other": []
+    }
+  },
+  "professional_details": {
+    "headline": "Software Engineer at Google",
+    "years_experience": 3.9,
+    "competencies": [
+      "Python",
+      "JavaScript",
+      "SQL",
+      "React",
+      "Machine Learning",
+      "AWS",
+      "Docker"
+    ],
+    "work_history": [
+      {
+        "company": "Google",
+        "role": "Software Engineer",
+        "start_date": "2022-07",
+        "end_date": "Present",
+        "location": "Mountain View, CA"
+      }
+    ]
+  },
+  "academic_details": {
+    "history": [
+      {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "start_date": "2018-09",
+        "end_date": "2022-06"
+      }
+    ]
+  }
+}
