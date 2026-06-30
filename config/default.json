@@ -1,0 +1,35 @@
+{
+  "fields": {
+    "name": {
+      "rename": "full_name",
+      "path": "name"
+    },
+    "email": {
+      "rename": "email_address",
+      "path": "email"
+    },
+    "phone": {
+      "rename": "phone_number",
+      "path": "phone"
+    },
+    "skills": {
+      "rename": "skills",
+      "path": "skills"
+    },
+    "education": {
+      "rename": "education_history",
+      "path": "education"
+    },
+    "experience": {
+      "rename": "work_history",
+      "path": "experience"
+    },
+    "country": {
+      "rename": "country_code",
+      "path": "country"
+    }
+  },
+  "include_confidence": true,
+  "include_provenance": true,
+  "missing_field_policy": "null"
+}

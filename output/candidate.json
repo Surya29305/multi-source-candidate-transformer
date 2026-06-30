@@ -1,0 +1,172 @@
+{
+  "full_name": {
+    "value": "Jane Doe",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "name",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      },
+      {
+        "field": "name",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "email_address": {
+    "value": "jane.doe@example.com",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "email",
+        "source": "resume",
+        "extraction_method": "regex"
+      },
+      {
+        "field": "email",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "phone_number": {
+    "value": "+15550199988",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "phone",
+        "source": "resume",
+        "extraction_method": "regex"
+      },
+      {
+        "field": "phone",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "value": "Python",
+      "confidence": 1.0,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    },
+    {
+      "value": "React",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Machine Learning",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "JavaScript",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    },
+    {
+      "value": "SQL",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "education_history": [
+    {
+      "value": {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "start_date": "2018-09",
+        "end_date": "2022-06"
+      },
+      "confidence": 1.0,
+      "provenance": [
+        {
+          "field": "education",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "education",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "work_history": [
+    {
+      "value": {
+        "company": "Google",
+        "role": "Software Engineer",
+        "start_date": "2022-07",
+        "end_date": "Present",
+        "location": "Mountain View, CA"
+      },
+      "confidence": 1.0,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "experience",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "country_code": {
+    "value": "US",
+    "confidence": 0.9,
+    "provenance": [
+      {
+        "field": "country",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "overall_confidence": 0.97
+}
