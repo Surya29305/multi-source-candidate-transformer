@@ -1,17 +1,17 @@
 {
   "candidate_id": {
-    "value": "be999d1e91f6e1952cee6fe32c8c4d37a36a3bf7d4a7f94b2c68eb6dc7feba46",
-    "confidence": 1.0,
+    "value": "ATS-20240915-7742",
+    "confidence": 0.9,
     "provenance": [
       {
         "field": "candidate_id",
-        "source": "system",
-        "extraction_method": "deterministic_hash"
+        "source": "ats",
+        "extraction_method": "ats_json"
       }
     ]
   },
   "full_name": {
-    "value": "Jane Doe",
+    "value": "Ravi Krishnamurthy",
     "confidence": 1.0,
     "provenance": [
       {
@@ -38,7 +38,7 @@
   },
   "emails": [
     {
-      "value": "jane.doe@example.com",
+      "value": "ravi.krishnamurthy@stripe.com",
       "confidence": 1.0,
       "provenance": [
         {
@@ -66,7 +66,7 @@
   ],
   "phones": [
     {
-      "value": "+15550199988",
+      "value": "+14158675309",
       "confidence": 1.0,
       "provenance": [
         {
@@ -78,14 +78,24 @@
           "field": "phones",
           "source": "csv",
           "extraction_method": "csv_structure"
+        },
+        {
+          "field": "phones",
+          "source": "resume",
+          "extraction_method": "regex"
+        },
+        {
+          "field": "phones",
+          "source": "linkedin",
+          "extraction_method": "regex"
         }
       ]
     }
   ],
   "location": {
     "value": {
-      "city": "Mountain View",
-      "region": "CA",
+      "city": "San Francisco",
+      "region": "California",
       "country": "US"
     },
     "confidence": 0.8,
@@ -102,6 +112,11 @@
       },
       {
         "field": "location",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      },
+      {
+        "field": "location",
         "source": "linkedin",
         "extraction_method": "linkedin_structure"
       }
@@ -109,8 +124,8 @@
   },
   "links": {
     "value": {
-      "linkedin": "https://linkedin.com/in/janedoe",
-      "github": null,
+      "linkedin": "https://linkedin.com/in/ravikrishnamurthy",
+      "github": "https://github.com/ravikrishnamurthy",
       "portfolio": null,
       "other": []
     },
@@ -129,9 +144,14 @@
     ]
   },
   "headline": {
-    "value": "Software Engineer at Google",
-    "confidence": 0.8,
+    "value": "Backend Software Engineer",
+    "confidence": 0.7,
     "provenance": [
+      {
+        "field": "headline",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      },
       {
         "field": "headline",
         "source": "linkedin",
@@ -140,7 +160,7 @@
     ]
   },
   "years_experience": {
-    "value": 4.0,
+    "value": 6.9,
     "confidence": 1.0,
     "provenance": [
       {
@@ -178,7 +198,18 @@
       ]
     },
     {
-      "value": "JavaScript",
+      "value": "Java",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    },
+    {
+      "value": "AWS",
       "confidence": 1.0,
       "provenance": [
         {
@@ -190,6 +221,32 @@
           "field": "skills",
           "source": "csv",
           "extraction_method": "csv_structure"
+        },
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Kubernetes",
+      "confidence": 1.0,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        },
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "skills",
+          "source": "linkedin",
+          "extraction_method": "linkedin_structure"
         }
       ]
     },
@@ -206,54 +263,33 @@
           "field": "skills",
           "source": "csv",
           "extraction_method": "csv_structure"
-        },
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
-        }
-      ]
-    },
-    {
-      "value": "React",
-      "confidence": 1.0,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "resume",
-          "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
-        }
-      ]
-    },
-    {
-      "value": "Machine Learning",
-      "confidence": 0.8,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "resume",
-          "extraction_method": "pdf_structure"
-        }
-      ]
-    },
-    {
-      "value": "AWS",
-      "confidence": 0.8,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
         }
       ]
     },
     {
       "value": "Docker",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Git",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Linux",
       "confidence": 0.8,
       "provenance": [
         {
@@ -267,11 +303,11 @@
   "experience": [
     {
       "value": {
-        "company": "Google",
+        "company": "Stripe Inc.",
         "role": "Software Engineer",
-        "start_date": "2022-07",
+        "start_date": "2022-03",
         "end_date": "Present",
-        "location": "Mountain View, CA"
+        "location": "San Francisco, CA"
       },
       "confidence": 1.0,
       "provenance": [
@@ -289,6 +325,38 @@
           "field": "experience",
           "source": "resume",
           "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "experience",
+          "source": "linkedin",
+          "extraction_method": "linkedin_structure"
+        }
+      ]
+    },
+    {
+      "value": {
+        "company": "Uber Technologies",
+        "role": "Backend Developer",
+        "start_date": "2019-07",
+        "end_date": "2022-02",
+        "location": "San Francisco, CA"
+      },
+      "confidence": 1.0,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        },
+        {
+          "field": "experience",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        },
+        {
+          "field": "experience",
+          "source": "linkedin",
+          "extraction_method": "linkedin_structure"
         }
       ]
     }
@@ -296,11 +364,11 @@
   "education": [
     {
       "value": {
-        "institution": "Stanford University",
+        "institution": "University of California, Berkeley",
         "degree": "B.S.",
         "field_of_study": "Computer Science",
-        "start_date": "2018-09",
-        "end_date": "2022-06"
+        "start_date": "2015-08",
+        "end_date": "2019-05"
       },
       "confidence": 1.0,
       "provenance": [
@@ -322,9 +390,9 @@
       ]
     }
   ],
-  "overall_confidence": 0.94,
+  "overall_confidence": 0.92,
   "metadata": {
-    "generated_at": "2026-07-01T03:37:35.389047Z",
+    "generated_at": "2026-07-01T03:34:36.114710Z",
     "pipeline_version": "1.2.0",
     "merge_strategy": "deterministic_priority_with_confidence_fallback",
     "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",

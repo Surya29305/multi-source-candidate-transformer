@@ -1,0 +1,271 @@
+{
+  "candidate_id": {
+    "value": "7b383fdb27681f5ed11273cb4e51d09cdf0fe56e179944915750e4a949d88609",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "candidate_id",
+        "source": "system",
+        "extraction_method": "deterministic_hash"
+      }
+    ]
+  },
+  "full_name": {
+    "value": "Ravi Krishnamurthy",
+    "confidence": 0.8,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      }
+    ]
+  },
+  "emails": [
+    {
+      "value": "ravi.krishnamurthy@stripe.com",
+      "confidence": 0.6,
+      "provenance": [
+        {
+          "field": "emails",
+          "source": "resume",
+          "extraction_method": "regex"
+        }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "value": "+14158675309",
+      "confidence": 0.6,
+      "provenance": [
+        {
+          "field": "phones",
+          "source": "resume",
+          "extraction_method": "regex"
+        }
+      ]
+    }
+  ],
+  "location": {
+    "value": {
+      "city": "San Francisco",
+      "region": "CA",
+      "country": "US"
+    },
+    "confidence": 0.8,
+    "provenance": [
+      {
+        "field": "location",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      }
+    ]
+  },
+  "links": {
+    "value": {
+      "linkedin": null,
+      "github": "https://github.com/ravikrishnamurthy",
+      "portfolio": null,
+      "other": []
+    },
+    "confidence": 0.8,
+    "provenance": [
+      {
+        "field": "links",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      }
+    ]
+  },
+  "headline": {
+    "value": "Backend Software Engineer",
+    "confidence": 0.8,
+    "provenance": [
+      {
+        "field": "headline",
+        "source": "resume",
+        "extraction_method": "pdf_structure"
+      }
+    ]
+  },
+  "years_experience": {
+    "value": 6.9,
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "years_experience",
+        "source": "system",
+        "extraction_method": "computed"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "value": "Python",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Docker",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Git",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "AWS",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": "Kubernetes",
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "value": {
+        "company": "Stripe",
+        "role": "Backend Software Engineer",
+        "start_date": "2022-03",
+        "end_date": "Present",
+        "location": null
+      },
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    },
+    {
+      "value": {
+        "company": "Uber",
+        "role": "Software Engineer (Backend)",
+        "start_date": "2019-07",
+        "end_date": "2022-02",
+        "location": null
+      },
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "value": {
+        "institution": "University of California, Berkeley",
+        "degree": "Bachelor",
+        "field_of_study": "of Science, Computer Science",
+        "start_date": "2015-01",
+        "end_date": "2019-01"
+      },
+      "confidence": 0.8,
+      "provenance": [
+        {
+          "field": "education",
+          "source": "resume",
+          "extraction_method": "pdf_structure"
+        }
+      ]
+    }
+  ],
+  "overall_confidence": 0.8,
+  "metadata": {
+    "generated_at": "2026-07-01T03:36:32.828623Z",
+    "pipeline_version": "1.2.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+    "sources_processed": [
+      "resume"
+    ],
+    "validation_report": {
+      "candidate_id": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "full_name": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "emails": {
+        "status": "passed",
+        "message": "Valid email format"
+      },
+      "phones": {
+        "status": "passed",
+        "message": "Valid E.164 phone number"
+      },
+      "location": {
+        "status": "passed",
+        "message": "Location normalized successfully"
+      },
+      "links": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "headline": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "years_experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "skills": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "education": {
+        "status": "passed",
+        "message": "Required field present"
+      }
+    }
+  }
+}

@@ -140,7 +140,7 @@
     ]
   },
   "years_experience": {
-    "value": 3.9,
+    "value": 4.0,
     "confidence": 1.0,
     "provenance": [
       {
@@ -324,7 +324,7 @@
   ],
   "overall_confidence": 0.94,
   "metadata": {
-    "generated_at": "2026-06-30T18:04:56.482879Z",
+    "generated_at": "2026-07-01T03:14:30.653917Z",
     "pipeline_version": "1.2.0",
     "merge_strategy": "deterministic_priority_with_confidence_fallback",
     "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",

@@ -1,0 +1,29 @@
+Ravi Krishnamurthy
+Senior Software Engineer | Python & Cloud Specialist
+San Francisco, CA
+United States
+
+Contact Info:
+linkedin.com/in/ravikrishnamurthy
+ravi.krishnamurthy@stripe.com
+(415) 867-5309
+
+Summary:
+Senior Software Engineer specializing in scalable Python backend systems and cloud infrastructure.
+
+Experience:
+Stripe, Senior Software Engineer
+March 2022 - Present
+San Francisco, CA
+
+Uber, Backend Software Engineer
+July 2019 - February 2022
+San Francisco, CA
+
+Education:
+University of California, Berkeley
+B.S. Computer Science
+2015 - 2019
+
+Skills:
+Python, Kubernetes, Linux

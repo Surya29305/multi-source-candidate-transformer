@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at": "2026-07-01T03:07:19.137274Z",
+    "generated_at": "2026-07-01T03:35:40.989933Z",
     "pipeline_version": "1.2.0",
     "merge_strategy": "deterministic_priority_with_confidence_fallback",
     "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
@@ -55,58 +55,66 @@
   },
   "personal": {
     "name_details": {
-      "full": "Jane Doe"
+      "full": "Ravi Krishnamurthy"
     },
     "residence": {
-      "city": "Mountain View",
-      "region": "CA",
+      "city": "San Francisco",
+      "region": "California",
       "country": "US"
     }
   },
   "contact": {
     "email_addresses": [
-      "jane.doe@example.com"
+      "ravi.krishnamurthy@stripe.com"
     ],
     "phone_numbers": [
-      "+15550199988"
+      "+14158675309"
     ],
     "socials": {
-      "linkedin": "https://linkedin.com/in/janedoe",
-      "github": null,
+      "linkedin": "https://linkedin.com/in/ravikrishnamurthy",
+      "github": "https://github.com/ravikrishnamurthy",
       "portfolio": null,
       "other": []
     }
   },
   "professional_details": {
-    "headline": "Software Engineer at Google",
-    "years_experience": 4.0,
+    "headline": "Backend Software Engineer",
+    "years_experience": 6.9,
     "competencies": [
       "Python",
-      "JavaScript",
-      "SQL",
-      "React",
-      "Machine Learning",
+      "Java",
       "AWS",
-      "Docker"
+      "Kubernetes",
+      "SQL",
+      "Docker",
+      "Git",
+      "Linux"
     ],
     "work_history": [
       {
-        "company": "Google",
+        "company": "Stripe Inc.",
         "role": "Software Engineer",
-        "start_date": "2022-07",
+        "start_date": "2022-03",
         "end_date": "Present",
-        "location": "Mountain View, CA"
+        "location": "San Francisco, CA"
+      },
+      {
+        "company": "Uber Technologies",
+        "role": "Backend Developer",
+        "start_date": "2019-07",
+        "end_date": "2022-02",
+        "location": "San Francisco, CA"
       }
     ]
   },
   "academic_details": {
     "history": [
       {
-        "institution": "Stanford University",
+        "institution": "University of California, Berkeley",
         "degree": "B.S.",
         "field_of_study": "Computer Science",
-        "start_date": "2018-09",
-        "end_date": "2022-06"
+        "start_date": "2015-08",
+        "end_date": "2019-05"
       }
     ]
   }

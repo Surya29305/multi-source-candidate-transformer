@@ -1,0 +1,34 @@
+{
+  "candidate_id": "ATS-20240915-7742",
+  "first_name": "Ravi",
+  "last_name": "Krishnamurthy",
+  "email": "ravi.krishnamurthy@stripe.com",
+  "phone": "+1 (415) 867-5309",
+  "country": "United States",
+  "skills": ["Python", "Java", "AWS", "Kubernetes", "SQL"],
+  "education_history": [
+    {
+      "school": "University of California, Berkeley",
+      "degree_name": "B.S.",
+      "major": "Computer Science",
+      "start": "2015-08",
+      "end": "2019-05"
+    }
+  ],
+  "work_history": [
+    {
+      "employer": "Stripe Inc.",
+      "job_title": "Software Engineer",
+      "start_date": "2022-03",
+      "end_date": "Present",
+      "office_location": "San Francisco, CA"
+    },
+    {
+      "employer": "Uber Technologies",
+      "job_title": "Backend Developer",
+      "start_date": "2019-07",
+      "end_date": "2022-02",
+      "office_location": "San Francisco, CA"
+    }
+  ]
+}

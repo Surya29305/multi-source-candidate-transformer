@@ -16,11 +16,6 @@
     "provenance": [
       {
         "field": "full_name",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      },
-      {
-        "field": "full_name",
         "source": "csv",
         "extraction_method": "csv_structure"
       },
@@ -28,11 +23,6 @@
         "field": "full_name",
         "source": "resume",
         "extraction_method": "pdf_structure"
-      },
-      {
-        "field": "full_name",
-        "source": "linkedin",
-        "extraction_method": "linkedin_structure"
       }
     ]
   },
@@ -43,22 +33,12 @@
       "provenance": [
         {
           "field": "emails",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
-        {
-          "field": "emails",
           "source": "csv",
           "extraction_method": "csv_structure"
         },
         {
           "field": "emails",
           "source": "resume",
-          "extraction_method": "regex"
-        },
-        {
-          "field": "emails",
-          "source": "linkedin",
           "extraction_method": "regex"
         }
       ]
@@ -67,13 +47,8 @@
   "phones": [
     {
       "value": "+15550199988",
-      "confidence": 1.0,
+      "confidence": 0.85,
       "provenance": [
-        {
-          "field": "phones",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "phones",
           "source": "csv",
@@ -86,30 +61,20 @@
     "value": {
       "city": "Mountain View",
       "region": "CA",
-      "country": "US"
+      "country": null
     },
-    "confidence": 0.8,
+    "confidence": 0.85,
     "provenance": [
-      {
-        "field": "location",
-        "source": "ats",
-        "extraction_method": "ats_json"
-      },
       {
         "field": "location",
         "source": "csv",
         "extraction_method": "csv_structure"
-      },
-      {
-        "field": "location",
-        "source": "linkedin",
-        "extraction_method": "linkedin_structure"
       }
     ]
   },
   "links": {
     "value": {
-      "linkedin": "https://linkedin.com/in/janedoe",
+      "linkedin": null,
       "github": null,
       "portfolio": null,
       "other": []
@@ -120,46 +85,16 @@
         "field": "links",
         "source": "resume",
         "extraction_method": "pdf_structure"
-      },
-      {
-        "field": "links",
-        "source": "linkedin",
-        "extraction_method": "linkedin_structure"
       }
     ]
   },
-  "headline": {
-    "value": "Software Engineer at Google",
-    "confidence": 0.8,
-    "provenance": [
-      {
-        "field": "headline",
-        "source": "linkedin",
-        "extraction_method": "linkedin_structure"
-      }
-    ]
-  },
-  "years_experience": {
-    "value": 4.0,
-    "confidence": 1.0,
-    "provenance": [
-      {
-        "field": "years_experience",
-        "source": "system",
-        "extraction_method": "computed"
-      }
-    ]
-  },
+  "headline": null,
+  "years_experience": null,
   "skills": [
     {
       "value": "Python",
       "confidence": 1.0,
       "provenance": [
-        {
-          "field": "skills",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "skills",
           "source": "csv",
@@ -169,23 +104,13 @@
           "field": "skills",
           "source": "resume",
           "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
         }
       ]
     },
     {
       "value": "JavaScript",
-      "confidence": 1.0,
+      "confidence": 0.85,
       "provenance": [
-        {
-          "field": "skills",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "skills",
           "source": "csv",
@@ -195,38 +120,23 @@
     },
     {
       "value": "SQL",
-      "confidence": 1.0,
+      "confidence": 0.85,
       "provenance": [
-        {
-          "field": "skills",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "skills",
           "source": "csv",
           "extraction_method": "csv_structure"
-        },
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
         }
       ]
     },
     {
       "value": "React",
-      "confidence": 1.0,
+      "confidence": 0.8,
       "provenance": [
         {
           "field": "skills",
           "source": "resume",
           "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
         }
       ]
     },
@@ -240,28 +150,6 @@
           "extraction_method": "pdf_structure"
         }
       ]
-    },
-    {
-      "value": "AWS",
-      "confidence": 0.8,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
-        }
-      ]
-    },
-    {
-      "value": "Docker",
-      "confidence": 0.8,
-      "provenance": [
-        {
-          "field": "skills",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
-        }
-      ]
     }
   ],
   "experience": [
@@ -269,17 +157,12 @@
       "value": {
         "company": "Google",
         "role": "Software Engineer",
-        "start_date": "2022-07",
+        "start_date": "Present",
         "end_date": "Present",
-        "location": "Mountain View, CA"
+        "location": null
       },
       "confidence": 1.0,
       "provenance": [
-        {
-          "field": "experience",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "experience",
           "source": "csv",
@@ -297,41 +180,29 @@
     {
       "value": {
         "institution": "Stanford University",
-        "degree": "B.S.",
-        "field_of_study": "Computer Science",
-        "start_date": "2018-09",
-        "end_date": "2022-06"
+        "degree": null,
+        "field_of_study": null,
+        "start_date": "2018-01",
+        "end_date": "2022-01"
       },
-      "confidence": 1.0,
+      "confidence": 0.8,
       "provenance": [
-        {
-          "field": "education",
-          "source": "ats",
-          "extraction_method": "ats_json"
-        },
         {
           "field": "education",
           "source": "resume",
           "extraction_method": "pdf_structure"
-        },
-        {
-          "field": "education",
-          "source": "linkedin",
-          "extraction_method": "linkedin_structure"
         }
       ]
     }
   ],
-  "overall_confidence": 0.94,
+  "overall_confidence": 0.91,
   "metadata": {
-    "generated_at": "2026-07-01T03:37:35.389047Z",
+    "generated_at": "2026-07-01T03:05:30.871151Z",
     "pipeline_version": "1.2.0",
     "merge_strategy": "deterministic_priority_with_confidence_fallback",
     "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
     "sources_processed": [
-      "ats",
       "csv",
-      "linkedin",
       "resume"
     ],
     "validation_report": {
@@ -356,14 +227,6 @@
         "message": "Location normalized successfully"
       },
       "links": {
-        "status": "passed",
-        "message": "Required field present"
-      },
-      "headline": {
-        "status": "passed",
-        "message": "Required field present"
-      },
-      "years_experience": {
         "status": "passed",
         "message": "Required field present"
       },

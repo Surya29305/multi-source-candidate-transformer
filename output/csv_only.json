@@ -1,0 +1,163 @@
+{
+  "candidate_id": {
+    "value": "7b383fdb27681f5ed11273cb4e51d09cdf0fe56e179944915750e4a949d88609",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "candidate_id",
+        "source": "system",
+        "extraction_method": "deterministic_hash"
+      }
+    ]
+  },
+  "full_name": {
+    "value": "Ravi Krishnamurthy",
+    "confidence": 0.85,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "csv",
+        "extraction_method": "csv_structure"
+      }
+    ]
+  },
+  "emails": [
+    {
+      "value": "ravi.krishnamurthy@stripe.com",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "emails",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "value": "+14158675309",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "phones",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "location": {
+    "value": {
+      "city": "San Francisco",
+      "region": "California",
+      "country": null
+    },
+    "confidence": 0.85,
+    "provenance": [
+      {
+        "field": "location",
+        "source": "csv",
+        "extraction_method": "csv_structure"
+      }
+    ]
+  },
+  "links": null,
+  "headline": null,
+  "years_experience": null,
+  "skills": [
+    {
+      "value": "Python",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    },
+    {
+      "value": "AWS",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    },
+    {
+      "value": "SQL",
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "value": {
+        "company": "Stripe",
+        "role": "Software Development Engineer",
+        "start_date": "Present",
+        "end_date": "Present",
+        "location": null
+      },
+      "confidence": 0.85,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "csv",
+          "extraction_method": "csv_structure"
+        }
+      ]
+    }
+  ],
+  "education": null,
+  "overall_confidence": 0.87,
+  "metadata": {
+    "generated_at": "2026-07-01T03:36:06.784798Z",
+    "pipeline_version": "1.2.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+    "sources_processed": [
+      "csv"
+    ],
+    "validation_report": {
+      "candidate_id": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "full_name": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "emails": {
+        "status": "passed",
+        "message": "Valid email format"
+      },
+      "phones": {
+        "status": "passed",
+        "message": "Valid E.164 phone number"
+      },
+      "location": {
+        "status": "passed",
+        "message": "Location normalized successfully"
+      },
+      "skills": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "experience": {
+        "status": "passed",
+        "message": "Required field present"
+      }
+    }
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "candidate_id": {
+    "value": "be999d1e91f6e1952cee6fe32c8c4d37a36a3bf7d4a7f94b2c68eb6dc7feba46",
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "candidate_id",
+        "source": "system",
+        "extraction_method": "deterministic_hash"
+      }
+    ]
+  },
+  "full_name": {
+    "value": "Jane Doe",
+    "confidence": 0.9,
+    "provenance": [
+      {
+        "field": "full_name",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "emails": [
+    {
+      "value": "jane.doe@example.com",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "emails",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "phones": [
+    {
+      "value": "+15550199988",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "phones",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "location": {
+    "value": {
+      "city": null,
+      "region": null,
+      "country": "US"
+    },
+    "confidence": 0.9,
+    "provenance": [
+      {
+        "field": "location",
+        "source": "ats",
+        "extraction_method": "ats_json"
+      }
+    ]
+  },
+  "links": null,
+  "headline": null,
+  "years_experience": {
+    "value": 4.0,
+    "confidence": 1.0,
+    "provenance": [
+      {
+        "field": "years_experience",
+        "source": "system",
+        "extraction_method": "computed"
+      }
+    ]
+  },
+  "skills": [
+    {
+      "value": "Python",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    },
+    {
+      "value": "JavaScript",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    },
+    {
+      "value": "SQL",
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "skills",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "value": {
+        "company": "Google",
+        "role": "Software Engineer",
+        "start_date": "2022-07",
+        "end_date": "Present",
+        "location": "Mountain View, CA"
+      },
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "experience",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "value": {
+        "institution": "Stanford University",
+        "degree": "B.S.",
+        "field_of_study": "Computer Science",
+        "start_date": "2018-09",
+        "end_date": "2022-06"
+      },
+      "confidence": 0.9,
+      "provenance": [
+        {
+          "field": "education",
+          "source": "ats",
+          "extraction_method": "ats_json"
+        }
+      ]
+    }
+  ],
+  "overall_confidence": 0.92,
+  "metadata": {
+    "generated_at": "2026-07-01T03:04:44.248614Z",
+    "pipeline_version": "1.2.0",
+    "merge_strategy": "deterministic_priority_with_confidence_fallback",
+    "confidence_strategy": "Base: ATS=0.9, CSV=0.85, Resume=0.8/0.6, LinkedIn=0.8/0.6. Matches boost to 1.0. Conflicts penalize higher score by 0.1.",
+    "sources_processed": [
+      "ats"
+    ],
+    "validation_report": {
+      "candidate_id": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "full_name": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "emails": {
+        "status": "passed",
+        "message": "Valid email format"
+      },
+      "phones": {
+        "status": "passed",
+        "message": "Valid E.164 phone number"
+      },
+      "location": {
+        "status": "passed",
+        "message": "Location normalized successfully"
+      },
+      "years_experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "skills": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "experience": {
+        "status": "passed",
+        "message": "Required field present"
+      },
+      "education": {
+        "status": "passed",
+        "message": "Required field present"
+      }
+    }
+  }
+}

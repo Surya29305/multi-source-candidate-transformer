@@ -1,0 +1,31 @@
+Ravi Krishnamurthy
+Backend Software Engineer
+San Francisco, CA
+United States
+ravi.krishnamurthy@stripe.com
++1 415 867 5309
+github.com/ravikrishnamurthy
+
+Summary:
+Backend engineer specializing in distributed systems, high-performance Python services, and containerized deployments.
+
+Experience:
+Stripe, Backend Software Engineer
+March 2022 - Present
+San Francisco, CA
+
+Uber, Software Engineer (Backend)
+July 2019 - February 2022
+San Francisco, CA
+
+Education:
+University of California, Berkeley
+Bachelor of Science, Computer Science
+2015 - 2019
+
+Skills:
+Python, Docker, Git, AWS, Kubernetes
+
+Certifications:
+AWS Certified Solutions Architect (2023)
+Certified Kubernetes Administrator (2024)
